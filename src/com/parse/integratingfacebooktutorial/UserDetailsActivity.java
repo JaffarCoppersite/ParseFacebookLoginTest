@@ -286,12 +286,19 @@ public class UserDetailsActivity extends Activity {
 		private void requestPagePermission(Session session) {
 		    if (session != null) {
 		        pendingAnnounce = true;
-		        Session.NewPermissionsRequest newPermissionsRequest = new Session.NewPermissionsRequest(UserDetailsActivity.this, PERMISSIONS);
-
+		        
+		        Session fbSession = ParseFacebookUtils.getSession(); 
+		        Session.NewPermissionsRequest newPermissionsRequest = new Session.NewPermissionsRequest(this, PERMISSIONS);
 		        newPermissionsRequest.setRequestCode(111);
-		        Session mSession = Session.openActiveSessionFromCache(UserDetailsActivity.this);
-		        mSession.addCallback(callback);
-		        mSession.requestNewPublishPermissions(newPermissionsRequest);
+		        fbSession.addCallback(callback);
+		        fbSession.requestNewPublishPermissions(newPermissionsRequest);
+		        
+//		        Session.NewPermissionsRequest newPermissionsRequest = new Session.NewPermissionsRequest(UserDetailsActivity.this, PERMISSIONS);
+//
+//		       
+//		        Session mSession = Session.openActiveSessionFromCache(UserDetailsActivity.this);
+//		       
+//		        mSession.requestNewPublishPermissions(newPermissionsRequest);
 		    }
 		}
 		

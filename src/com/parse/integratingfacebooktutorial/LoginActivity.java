@@ -69,6 +69,13 @@ public class LoginActivity extends Activity {
 			public void done(ParseUser user, ParseException err) {
 				LoginActivity.this.progressDialog.dismiss();
 				if (user == null) {
+					if(err != null) {
+						Toast.makeText(LoginActivity.this, "Error code: "+ err.getCode()+"\nError msg: "+err.getMessage(), Toast.LENGTH_SHORT).show();
+					} else {
+						Toast.makeText(LoginActivity.this, "User returned from parse is null.", Toast.LENGTH_SHORT).show();
+					}
+					
+					
 					Log.d(IntegratingFacebookTutorialApplication.TAG,
 							"Uh oh. The user cancelled the Facebook login.");
 				} else if (user.isNew()) {
